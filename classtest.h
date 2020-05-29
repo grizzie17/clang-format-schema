@@ -28,19 +28,14 @@ public:
     CRoot();
     virtual ~CRoot();
 
-    void
-    rootFunction();
+    void rootFunction();
 
-    virtual void
-    purVirtFunc()
-            = 0;
+    virtual void purVirtFunc() = 0;
 };
 
 struct IMix
 {
-    virtual int
-    doAThing()
-            = 0;
+    virtual int doAThing() = 0;
 };
 
 class CMiddle : CRoot
@@ -49,8 +44,7 @@ public:
     CMiddle();
     virtual ~CMiddle();
 
-    void
-    middleFunction();
+    void middleFunction();
 };
 
 class CTest
@@ -62,10 +56,9 @@ public:
     CTest( int a, int b, int c );
     virtual ~CTest();
 
-    int
-    doSomething(      ///@returns: a value
-            int a,    ///< in: some arg description
-            int b     ///< in: another arg
+    int doSomething(    ///@returns: a value
+            int a,      ///< in: some arg description
+            int b       ///< in: another arg
     );
 
 protected:

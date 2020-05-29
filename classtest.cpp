@@ -10,7 +10,7 @@ const char sSample[]
 
 template <typename T>
 T
-foo( T a, T b )
+        foo( T a, T b )
 {
     return a < b ? b : a;
 }
@@ -39,7 +39,7 @@ CTest::~CTest()
 
 
 int
-CTest::doSomething( int a, int b )
+        CTest::doSomething( int a, int b )
 {
     int aaaaaaaaaaaaaaaaaaaaaaaaa = 1;
     int bbbbbbbbbbbbbbbbbbbbbbbbb = 2;

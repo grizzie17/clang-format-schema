@@ -682,35 +682,35 @@
 			"type": "boolean",
 			"description": "Add a space in front of an Objective-C protocol list, i.e. use Foo <Protocol> instead of Foo<Protocol>."
 		},
-		"PenalityBreakAssignment": {
+		"PenaltyBreakAssignment": {
 			"$ref": "#/definitions/unsigned",
 			"description": "The penalty for breaking around an assignment operator."
 		},
-		"PenalityBreakBeforeFirstCallParameter": {
+		"PenaltyBreakBeforeFirstCallParameter": {
 			"$ref": "#/definitions/unsigned",
 			"description": "The penalty for breaking a function call after call(."
 		},
-		"PenalityBreakComment": {
+		"PenaltyBreakComment": {
 			"$ref": "#/definitions/unsigned",
 			"description": "The penalty for each line break introduced inside a comment."
 		},
-		"PenalityBreakFirstLessLess": {
+		"PenaltyBreakFirstLessLess": {
 			"$ref": "#/definitions/unsigned",
 			"description": "The penalty for breaking before the first <<."
 		},
-		"PenalityBreakString": {
+		"PenaltyBreakString": {
 			"$ref": "#/definitions/unsigned",
 			"description": "The penalty for each line break introduced inside a string literal."
 		},
-		"PenalityBreakTemplateDeclaration": {
+		"PenaltyBreakTemplateDeclaration": {
 			"$ref": "#/definitions/unsigned",
 			"description": "The penalty for breaking after template declaration."
 		},
-		"PenalityExcessCharacter": {
+		"PenaltyExcessCharacter": {
 			"$ref": "#/definitions/unsigned",
 			"description": "The penalty for each character outside of the column limit."
 		},
-		"PenalityReturnTypeOnItsOwnLine": {
+		"PenaltyReturnTypeOnItsOwnLine": {
 			"$ref": "#/definitions/unsigned",
 			"description": "Penalty for putting the return type of a function onto its own line."
 		},
