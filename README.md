@@ -38,7 +38,7 @@ Add the following to your configuration (settngs).  Do NOT add the `yaml.format.
   "yaml.hover": true,
   "yaml.completion": true,
   "yaml.schemas": {
-    "clang-format-schema.json": [
+    "./clang-format-schema.json": [
       ".clang-format",
       "clang-format"
     ]
