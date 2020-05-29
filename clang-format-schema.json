@@ -1,0 +1,1027 @@
+{
+	"type": "object",
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"BasedOnStyle": {
+			"$ref": "#/definitions/BasedOnStyleDef",
+			"description": "style used for all options not specifically set in the configuration"
+		},
+		"AccessModifierOffset": {
+			"type": "integer",
+			"description": "extra indent or outdent of access modifiers, e.g. 'public:'"
+		},
+		"AlignAfterOpenBracket": {
+			"description": "applies to parentheses, angle brackets and square brackets",
+			"oneOf": [
+				{
+					"type": "boolean",
+					"enum": [
+						true,
+						false
+					],
+					"enumDescriptions": [
+						"Align parameters on the open bracket",
+						"Don't align, instead use ContinuationIndentWidth"
+					]
+				},
+				{
+					"type": "string",
+					"enum": [
+						"Align",
+						"DontAlign",
+						"AlwaysBreak"
+					],
+					"enumDescriptions": [
+						"Align parameters on the open bracket",
+						"Don't align, instead use ContinuationIndentWidth",
+						"Always break after an open bracket, if parameters dont fit on a single line"
+					]
+				}
+			]
+		},
+		"AlignConsecutiveAssignments": {
+			"type": "boolean",
+			"description": "if 'true', aligns consecutive assignments"
+		},
+		"AlignConsecutiveBitFields": {
+			"type": "boolean",
+			"description": "if 'true', aligns consecutive bitfield members"
+		},
+		"AlignConsecutiveDeclarations": {
+			"type": "boolean",
+			"description": "if 'true', aligns consecutive declarations"
+		},
+		"AlignConsecutiveMacros": {
+			"type": "boolean",
+			"description": "if 'true', aligns the body of consectuive C/C++ preprocessor macros"
+		},
+		"AlignEscapedNewlines": {
+			"description": "options for aligning backslashes in escaped newlines",
+			"type": "string",
+			"enum": [
+				"DontAlign",
+				"Left",
+				"Right"
+			],
+			"enumDescriptions": [
+				"Don't align escaped newlines",
+				"Align escaped newlines as far left as possible",
+				"Align escaped newlines in the right-most column"
+			]
+		},
+		"AlignOperands": {
+			"description": "horizontally align operands of binary and ternary expressions",
+			"oneOf": [
+				{
+					"type": "boolean",
+					"enum": [
+						true,
+						false
+					],
+					"enumDescriptions": [
+						"Horizontally align operands of binary and ternary expressions.\nSpecifically, this aligns operands of a single expression that needs to be split over multiple lines.\nWhen BreakBeforeBinaryOperators is set, the wrapped operator is aligned with the operand on the first line.",
+						"Do not align operands of binary and ternary expressions. The wrapped lines are indented ContinuationIndentWidth spaces from the start of the line."
+					]
+				},
+				{
+					"type": "string",
+					"enum": [
+						"DontAlign",
+						"Align",
+						"AlignAfterOperator"
+					],
+					"enumDescriptions": [
+						"Do not align operands of binary and ternary expressions. The wrapped lines are indented ContinuationIndentWidth spaces from the start of the line.",
+						"Horizontally align operands of binary and ternary expressions.\nSpecifically, this aligns operands of a single expression that needs to be split over multiple lines.\nWhen BreakBeforeBinaryOperators is set, the wrapped operator is aligned with the operand on the first line.",
+						"Horizontally align operands of binary and ternary expressions.\nThis is similar to 'Align', except when 'BreakBeforeBinaryOperators' is set, the operator is un-indented so that the wrapped operand is aligned with the operand on the first line."
+					]
+				}
+			]
+		},
+		"AlignTrailingComments": {
+			"description": "Aligning consecutive trailing comments",
+			"type": "boolean",
+			"enum": [
+				true,
+				false
+			],
+			"enumDescriptions": [
+				"Aligns consecutive trailing comments",
+				"Leaves trailing comments alone"
+			]
+		},
+		"AllowAllArgumentsOnNextLine": {
+			"type": "boolean",
+			"description": "if a function call or braced initializer list doesnt fit on a line, allow putting all arguments onto the next line, even if 'BinPackArguments' is 'false'"
+		},
+		"AllowAllConstructorInitializersOnNextLine": {
+			"type": "boolean",
+			"description": "if a constructor definition with a member initializer list doesn't fit on a single line, allow putting all member initializers onto the next line, 'ConstructorInitializerAllOnOneLineOrOnePerLine' is true. Note that this parameter has no effect if 'ConstructorInitializerAllOnOneLineOrOnePerLine' is false."
+		},
+		"AllowAllParametersOfDeclarationOnNextLine": {
+			"type": "boolean",
+			"description": "if the function declaration doesnt fit on a line, allow putting all parameters of a function declaration onto the next line even if 'BinPackParameters' is 'false'."
+		},
+		"AllowShortBlocksOnASingleLine": {
+			"description": "dependent on the value, 'while (true) { continue; }' can be put on a single line.",
+			"type": "string",
+			"enum": [
+				"Never",
+				"Empty",
+				"Always"
+			],
+			"enumDescriptions": [
+				"Never merge blocks into a single line.",
+				"Only merge empty blocks.",
+				"Always merge short blocks into a single line."
+			]
+		},
+		"AllowShortCaseLabelsOnASingleLine": {
+			"type": "boolean",
+			"description": "if 'true', short case labels will be contracted to a single line"
+		},
+		"AllowShortEnumsOnASingleLine": {
+			"type": "boolean",
+			"description": "Allow short enums on a single line"
+		},
+		"AllowShortFunctionsOnASingleLine": {
+			"description": "dependent on the value, 'if() { return 0; }' can be put on a single line",
+			"oneOf": [
+				{
+					"type": "boolean",
+					"enum": [
+						true,
+						false
+					],
+					"enumDescriptions": [
+						"Merge all functions fitting on a single line.",
+						"Never merge functions into a single line."
+					]
+				},
+				{
+					"type": "string",
+					"enum": [
+						"None",
+						"InlineOnly",
+						"Empty",
+						"Inline",
+						"All"
+					],
+					"enumDescriptions": [
+						"Never merge functions into a single line.",
+						"Only merge functions defined inside a class. Same as 'inline', except it does not implies 'empty': i.e. top level empty functions are not merged either.",
+						"Only merge empty functions.",
+						"Only merge functions defined inside a class. Implies 'empty'.",
+						"Merge all functions fitting on a single line."
+					]
+				}
+			]
+		},
+		"AllowShortIfStatementsOnASingleLine": {
+			"description": "dependent on the value, 'if (a) return;' can be put on a single line",
+			"oneOf": [
+				{
+					"type": "boolean",
+					"enum": [
+						true,
+						false
+					],
+					"enumDescriptions": [
+						"Always put short ifs on the same line if the else is not a compound statement or not.",
+						"Never put short ifs on the same line."
+					]
+				},
+				{
+					"type": "string",
+					"enum": [
+						"Never",
+						"WithoutElse",
+						"Always"
+					],
+					"enumDescriptions": [
+						"Never put short ifs on the same line.",
+						"Without else put short ifs on the same line only if the else is not a compound statement.",
+						"Always put short ifs on the same line if the else is not a compound statement or not."
+					]
+				}
+			]
+		},
+		"AllowShortLambdasOnASingleLine": {
+			"description": "Dependent on the value, 'auto lambda []() { return 0; }' can be put on a single line",
+			"type": "string",
+			"enum": [
+				"None",
+				"Empty",
+				"Inline",
+				"All"
+			],
+			"enumDescriptions": [
+				"Never merge lambdas into a single line.",
+				"Only merge empty lambdas.",
+				"Merge lambda into a single line if argument of a function.",
+				"Merge all lambdas fitting on a single line."
+			]
+		},
+		"AllowShortLoopsOnASingleLine": {
+			"type": "boolean",
+			"description": "If true, 'while (true) continue;' can be put on a single line."
+		},
+		"AlwaysBreakAfterDefinitionReturnType": {
+			"type": "string",
+			"description": "This option is 'deprecated' and is retained for backwards compatibility."
+		},
+		"AlwaysBreakAfterReturnType": {
+			"description": "The function declaration return type breaking style to use",
+			"type": "string",
+			"enum": [
+				"None",
+				"All",
+				"TopLevel",
+				"AllDefinitions",
+				"TopLevelDefinitions"
+			],
+			"enumDescriptions": [
+				"Break after return type automatically. PenaltyReturnTypeOnItsOwnLine is taken into account.",
+				"Always break after the return type.",
+				"Always break after the return types of top-level functions.",
+				"Always break after the return type of function definitions.",
+				"Always break after the return type of top-level definitions."
+			]
+		},
+		"AlwaysBreakBeforeMultilineStrings": {
+			"type": "boolean",
+			"description": "If true, always break before multiline string literals"
+		},
+		"AlwaysBreakTemplateDeclarations": {
+			"description": "The template declaration breaking style to use. Please quote if using 'No' or 'Yes'",
+			"type": "string",
+			"enum": [
+				"No",
+				"Multiline",
+				"Yes"
+			],
+			"enumDescriptions": [
+				"Do not force break before declaration (please quote \"No\"). PenaltyBreakTemplateDeclaration is taken into account.",
+				"Force break after template declaration only when the following declaration spans multiple lines.",
+				"Always break after template declaration (please quote \"Yes\")"
+			]
+		},
+		"BinPackArguments": {
+			"type": "boolean",
+			"description": "If false, a function call’s arguments will either be all on the same line or will have one line each"
+		},
+		"BinPackParameters": {
+			"type": "boolean",
+			"description": "If false, a function declaration’s or function definition’s parameters will either all be on the same line or will have one line each"
+		},
+		"BraceWrapping": {
+			"type": "object",
+			"description": "Control of individual brace wrapping cases",
+			"properties": {
+				"AfterCaseLabel": {
+					"type": "boolean",
+					"description": "wrap case labels"
+				},
+				"AfterClass": {
+					"type": "boolean",
+					"description": "wrap class definitions"
+				},
+				"AfterControlStatement": {
+					"description": "Wrap control statements (if/for/while/switch/...)",
+					"oneOf": [
+						{
+							"type": "boolean",
+							"enum": [
+								true,
+								false
+							],
+							"enumDescriptions": [
+								"Always wrap braces after a control statement.",
+								"Never wrap braces after a control statement."
+							]
+						},
+						{
+							"type": "string",
+							"enum": [
+								"Never",
+								"Multiline",
+								"Always"
+							],
+							"enumDescriptions": [
+								"Never wrap braces after a control statement.",
+								"Only wrap braces after a multi-line control statement.",
+								"Always wrap braces after a control statement."
+							]
+						}
+					]
+				},
+				"AfterEnum": {
+					"type": "boolean",
+					"description": "Wrap enum definitions"
+				},
+				"AfterFunction": {
+					"type": "boolean",
+					"description": "Wrap function definitions"
+				},
+				"AfterNamespace": {
+					"type": "boolean",
+					"description": "Wrap namespace definitions"
+				},
+				"AfterObjCDeclaration": {
+					"type": "boolean"
+				},
+				"AfterStruct": {
+					"type": "boolean",
+					"description": "Wrap struct definitions"
+				},
+				"AfterUnion": {
+					"type": "boolean",
+					"description": "Wrap union definitions"
+				},
+				"AfterExternBlock": {
+					"type": "boolean",
+					"description": "Wrap extern blocks"
+				},
+				"BeforeCatch": {
+					"type": "boolean",
+					"description": "Wrap before catch"
+				},
+				"BeforeElse": {
+					"type": "boolean",
+					"description": "Wrap before else"
+				},
+				"BeforeLambdaBody": {
+					"type": "boolean",
+					"description": "Wrap lambda block"
+				},
+				"BeforeWhile": {
+					"type": "boolean",
+					"description": "Wrap before do while"
+				},
+				"IndentBraces": {
+					"type": "boolean",
+					"description": "Indent the wrapped braces themselves"
+				},
+				"SplitEmptyFunction": {
+					"type": "boolean",
+					"description": "If false, empty function body can be put on a single line. This option is used only if the opening brace of the function has already been wrapped, i.e. the AfterFunction brace wrapping mode is set, and the function could/should not be put on a single line (as per AllowShortFunctionsOnASingleLine and constructor formatting options)"
+				},
+				"SplitEmptyRecord": {
+					"type": "boolean",
+					"description": "If false, empty record (e.g. class, struct or union) body can be put on a single line. This option is used only if the opening brace of the record has already been wrapped, i.e. the AfterClass (for classes) brace wrapping mode is set."
+				},
+				"SplitEmptyNamespace": {
+					"type": "boolean",
+					"description": "If false, empty namespace body can be put on a single line. This option is used only if the opening brace of the namespace has already been wrapped, i.e. the AfterNamespace brace wrapping mode is set."
+				}
+			}
+		},
+		"BreakAfterJavaFieldAnnotations": {
+			"type": "boolean"
+		},
+		"BreakBeforeBinaryOperators": {
+			"type": "string",
+			"description": "the way to wrap binary operators",
+			"enum": [
+				"None",
+				"NonAssignment",
+				"All"
+			],
+			"enumDescriptions": [
+				"Break after operators.",
+				"Break before operators that aren't assignments.",
+				"Break before operators."
+			]
+		},
+		"BreakBeforeBraces": {
+			"description": "brace breaking style to use",
+			"type": "string",
+			"enum": [
+				"Attach",
+				"Linux",
+				"Mozilla",
+				"Stroustrup",
+				"Allman",
+				"Whitesmiths",
+				"GNU",
+				"WebKit",
+				"Custom"
+			],
+			"enumDescriptions": [
+				"Always attach braces to surrounding context.",
+				"Like Attach, but break before braces on function, namespace and class definitions.",
+				"Like Attach, but break before braces on enum, function, and record definitions.",
+				"Like Attach, but break before function definitions, catch, and else.",
+				"Always break before braces.",
+				"Like Allman but always indent braces and line up code with braces.",
+				"Always break before braces and add an extra level of indentation to braces of control statements, not to those of class, function or other definitions.",
+				"Like Attach, but break before functions.",
+				"Configure each individual brace in BraceWrapping."
+			]
+		},
+		"BreakBeforeInheritanceComma": {
+			"type": "boolean",
+			"description": "DEPRECATED: use BreakInheritanceList"
+		},
+		"BreakBeforeTernaryOperators": {
+			"type": "boolean",
+			"description": "If true, ternary operators will be placed after line breaks."
+		},
+		"BreakConstructorInitializersBeforeComma": {
+			"type": "boolean",
+			"description": "DEPRECATED: use BreakConstructorInitializers"
+		},
+		"BreakConstructorInitializers": {
+			"description": "The constructor initializers style to use.",
+			"type": "string",
+			"enum": [
+				"BeforeColon",
+				"BeforeComma",
+				"AfterColon"
+			],
+			"enumDescriptions": [
+				"Break constructor initializers before the colon and after the commas.",
+				"Break constructor initializers before the colon and commas, and align the commas with the colon.",
+				"Break constructor initializers after the colon and commas."
+			]
+		},
+		"BreakInheritanceList": {
+			"description": "inheritance list style to use",
+			"type": "string",
+			"enum": [
+				"BeforeColon",
+				"BeforeComma",
+				"AfterColon"
+			],
+			"enumDescriptions": [
+				"Break inheritance list before the colon and after the commas.",
+				"Break inheritance list before the colon and commas, and align the commas with the colon.",
+				"Break inheritance list after the colon and commas."
+			]
+		},
+		"BreakStringLiterals": {
+			"type": "boolean",
+			"description": "Allow breaking string literals when formatting"
+		},
+		"ColumnLimit": {
+			"$ref": "#/definitions/unsigned",
+			"description": "a column limit of '0' means there is no column limit"
+		},
+		"CommentPragmas": {
+			"type": "string",
+			"description": "A regular expression that describes comments with special meaning, which should not be split into lines or otherwise changed."
+		},
+		"CompactNamespaces": {
+			"type": "boolean",
+			"description": "If true, consecutive namespace declarations will be on the same line. If false, each namespace is declared on a new line."
+		},
+		"ConstructorInitializerAllOnOneLineOrOnePerLine": {
+			"type": "boolean",
+			"description": "If the constructor initializers don’t fit on a line, put each initializer on its own line"
+		},
+		"ConstructorInitializerIndentWidth": {
+			"$ref": "#/definitions/unsigned",
+			"description": "The number of characters to use for indentation of constructor initializer lists as well as inheritance lists"
+		},
+		"ContinuationIndentWidth": {
+			"$ref": "#/definitions/unsigned",
+			"description": "Indent width for line continuations"
+		},
+		"Cpp11BracedListStyle": {
+			"type": "boolean",
+			"description": "If true, format braced lists as best suited for C++11 braced lists."
+		},
+		"DeriveLineEnding": {
+			"type": "boolean",
+			"description": "Analyze the formatted file for the most used line ending (\\r\\n or \\n). UseCRLF is only used as a fallback if none can be derived."
+		},
+		"DerivePointerAlignment": {
+			"type": "boolean",
+			"description": "If true, analyze the formatted file for the most common alignment of & and *. Pointer and reference alignment styles are going to be updated according to the preferences found in the file. PointerAlignment is then used only as fallback."
+		},
+		"DisableFormat": {
+			"type": "boolean",
+			"description": "completely disables formatting"
+		},
+		"ExperimentalAutoDetectBinPacking": {
+			"type": "boolean",
+			"description": "If true, clang-format detects whether function calls and definitions are formatted with one parameter per line."
+		},
+		"FixNamespaceComments": {
+			"type": "boolean",
+			"description": "If true, clang-format adds missing namespace end comments and fixes invalid existing ones."
+		},
+		"ForEachMacros": {
+			"$ref": "#/definitions/vectorString",
+			"description": "A vector of macros that should be interpreted as foreach loops instead of as function calls."
+		},
+		"IncludeBlocks": {
+			"description": "Dependent on the value, multiple #include blocks can be sorted as one and divided based on category.",
+			"type": "string",
+			"enum": [
+				"Preserve",
+				"Merge",
+				"Regroup"
+			],
+			"enumDescriptions": [
+				"Sort each #include block separately.",
+				"Merge multiple #include blocks together and sort as one.",
+				"Merge multiple #include blocks together and sort as one. Then split into groups based on category priority. See IncludeCategories."
+			]
+		},
+		"IncludeCategories": {
+			"description": "Regular expressions denoting the different #include categories used for ordering #includes.",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/IncludeCategoryDef"
+			}
+		},
+		"IncludeLsMainRegex": {
+			"type": "string",
+			"description": "Specify a regular expression of suffixes that are allowed in the file-to-main-include mapping."
+		},
+		"IncludeLsMainSourceRegex": {
+			"type": "string",
+			"description": "Specify a regular expression for files being formatted that are allowed to be considered “main” in the file-to-main-include mapping."
+		},
+		"IndentCaseBlocks": {
+			"type": "boolean",
+			"description": "Indent case label blocks one level from the case label."
+		},
+		"IndentCaseLabels": {
+			"type": "boolean",
+			"description": "Indent case labels one level from the switch statement."
+		},
+		"IndentExternBlock": {
+			"description": "IndentExternBlockStyle is the type of indenting of extern blocks.",
+			"type": "string",
+			"enum": [
+				"AfterExternBlock",
+				"NoIndent",
+				"Indent"
+			],
+			"enumDescriptions": [
+				"Backwards compatible with AfterExternBlock's indenting.",
+				"Does not indent extern blocks.",
+				"Indents extern blocks."
+			]
+		},
+		"IndentGotoLabels": {
+			"type": "boolean",
+			"description": "indent goto labels"
+		},
+		"IndentPPDirectives": {
+			"description": "The preprocessor directive indenting style to use",
+			"type": "string",
+			"enum": [
+				"None",
+				"AfterHash",
+				"BeforeHash"
+			],
+			"enumDescriptions": [
+				"Does not indent any directives.",
+				"Indents directives after the hash.",
+				"Indents directives before the hash"
+			]
+		},
+		"IndentWidth": {
+			"$ref": "#/definitions/unsigned",
+			"description": "number colmns to indent"
+		},
+		"IndentWrappedFunctionNames": {
+			"type": "boolean",
+			"description": "Indent if a function definition or declaration is wrapped after the type."
+		},
+		"InsertTrailingCommas": {
+			"type": "string",
+			"description": "If set to Wrapped will insert trailing commas in container literals (arrays and objects) that wrap across multiple lines. It is currently only available for JavaScript and disabled by default None. InsertTrailingCommas cannot be used together with BinPackArguments as inserting the comma disables bin-packing.",
+			"enum": [
+				"None",
+				"Wrapped"
+			],
+			"enumDescriptions": [
+				"Do not insert trailing commas.",
+				"Insert trailing commas in container literals that were wrapped over multiple lines. Note that this is conceptually incompatible with bin-packing, because the trailing comma is used as an indicator that a container should be formatted one-per-line (i.e. not bin-packed). So inserting a trailing comma counteracts bin-packing."
+			]
+		},
+		"JavaImportGroups": {
+			"type": "string"
+		},
+		"JavaScriptQuotes": {
+			"type": "string",
+			"enum": [
+				"Leave",
+				"Single",
+				"Double"
+			]
+		},
+		"JavaScriptWrapImorts": {
+			"type": "boolean"
+		},
+		"KeepEmptyLinesAtTheStartOfBlocks": {
+			"type": "boolean",
+			"description": "If true, the empty line at the start of blocks is kept."
+		},
+		"Language": {
+			"$ref": "#/definitions/languageKind",
+			"description": "language for which this format style is targeted"
+		},
+		"MacroBlockBegin": {
+			"type": "string",
+			"description": "A regular expression matching macros that start a block."
+		},
+		"MacroBlockEnd": {
+			"type": "string",
+			"description": "A regular expression matching macros that end a block."
+		},
+		"MaxEmptyLinesToKeep": {
+			"$ref": "#/definitions/unsigned",
+			"description": "The maximum number of consecutive empty lines to keep."
+		},
+		"NamespaceIndentation": {
+			"description": "The indentation used for namespaces.",
+			"type": "string",
+			"enum": [
+				"None",
+				"Inner",
+				"All"
+			],
+			"enumDescriptions": [
+				"Don't indent in namespaces.",
+				"Indent only in inner namespaces (nested in other namespaces).",
+				"Indent in all namespaces."
+			]
+		},
+		"NamespaceMacros": {
+			"$ref": "#/definitions/vectorString",
+			"description": "A vector of macros which are used to open namespace blocks."
+		},
+		"ObjCBinPackProtocolList": {
+			"type": "string",
+			"enum": [
+				"Auto",
+				"Always",
+				"Never"
+			]
+		},
+		"ObjCBlockIndentWidth": {
+			"$ref": "#/definitions/unsigned",
+			"description": "The number of characters to use for indentation of ObjC blocks."
+		},
+		"ObjCBrakBeforeNestedBlockParam": {
+			"type": "boolean",
+			"description": "Break parameters list into lines when there is nested block parameters in a fuction call"
+		},
+		"ObjCSpaceAfterProperty": {
+			"type": "boolean",
+			"description": "Add a space after @property in Objective-C, i.e. use @property (readonly) instead of @property(readonly)."
+		},
+		"ObjCSpaceBeforeProtocolList": {
+			"type": "boolean",
+			"description": "Add a space in front of an Objective-C protocol list, i.e. use Foo <Protocol> instead of Foo<Protocol>."
+		},
+		"PenalityBreakAssignment": {
+			"$ref": "#/definitions/unsigned",
+			"description": "The penalty for breaking around an assignment operator."
+		},
+		"PenalityBreakBeforeFirstCallParameter": {
+			"$ref": "#/definitions/unsigned",
+			"description": "The penalty for breaking a function call after call(."
+		},
+		"PenalityBreakComment": {
+			"$ref": "#/definitions/unsigned",
+			"description": "The penalty for each line break introduced inside a comment."
+		},
+		"PenalityBreakFirstLessLess": {
+			"$ref": "#/definitions/unsigned",
+			"description": "The penalty for breaking before the first <<."
+		},
+		"PenalityBreakString": {
+			"$ref": "#/definitions/unsigned",
+			"description": "The penalty for each line break introduced inside a string literal."
+		},
+		"PenalityBreakTemplateDeclaration": {
+			"$ref": "#/definitions/unsigned",
+			"description": "The penalty for breaking after template declaration."
+		},
+		"PenalityExcessCharacter": {
+			"$ref": "#/definitions/unsigned",
+			"description": "The penalty for each character outside of the column limit."
+		},
+		"PenalityReturnTypeOnItsOwnLine": {
+			"$ref": "#/definitions/unsigned",
+			"description": "Penalty for putting the return type of a function onto its own line."
+		},
+		"PointerAlignment": {
+			"description": "Pointer and reference alignment style",
+			"type": "string",
+			"enum": [
+				"Left",
+				"Right",
+				"Middle"
+			],
+			"enumDescriptions": [
+				"Align pointer to the left. (int* p)",
+				"Align pointer to the right. (int *p)",
+				"Align pointer in the middle. (int * p)"
+			]
+		},
+		"RawStringFormats": {
+			"description": "Defines hints for detecting supported languages code blocks in raw strings",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"Language": {
+						"$ref": "#/definitions/languageKind",
+						"description": "language for which this option is targeted"
+					},
+					"Delimiters": {
+						"$ref": "#/definitions/vectorString"
+					},
+					"EnclosingFunctions": {
+						"$ref": "#/definitions/vectorString"
+					},
+					"CanonicalDelimeter": {
+						"type": "string"
+					},
+					"BasedOnStyle": {
+						"$ref": "#/definitions/BasedOnStyleDef"
+					}
+				},
+				"required": [
+					"Language",
+					"Delimeters"
+				]
+			}
+		},
+		"ReflowComments": {
+			"type": "boolean",
+			"description": "If true, clang-format will attempt to re-flow comments."
+		},
+		"SortIncludes": {
+			"description": "Does clang-format sort #includes?",
+			"type": "boolean",
+			"enum": [
+				true,
+				false
+			],
+			"enumDescriptions": [
+				"alphabetically sort #includes",
+				"Do not sort #includes"
+			]
+		},
+		"SortUsingDeclarations": {
+			"type": "boolean",
+			"description": "If true, clang-format will sort using declarations."
+		},
+		"SpaceAfterCStyleCast": {
+			"type": "boolean",
+			"description": "If true, a space is inserted after C style casts."
+		},
+		"SpaceAfterLogicalNot": {
+			"type": "boolean",
+			"description": "If true, a space is inserted after the logical not operator (!)."
+		},
+		"SpaceAfterTemplateKeyword": {
+			"type": "boolean",
+			"description": "If true, a space will be inserted after the ‘template’ keyword."
+		},
+		"SpaceBeforeAssignmentOperators": {
+			"type": "boolean",
+			"description": "If false, spaces will be removed before assignment operators."
+		},
+		"SpaceBeforeCpp11BracedList": {
+			"type": "boolean",
+			"description": "If true, a space will be inserted before a C++11 braced list used to initialize an object (after the preceding identifier or type)."
+		},
+		"SpaceBeforeCtorInitializerColon": {
+			"type": "boolean",
+			"description": "If false, spaces will be removed before constructor initializer colon."
+		},
+		"SpaceBeforeInheritanceColon": {
+			"type": "boolean",
+			"description": "If false, spaces will be removed before inheritance colon."
+		},
+		"SpaceBeforeParens": {
+			"description": "Defines in which cases to put a space before opening parentheses.",
+			"type": "string",
+			"enum": [
+				"Never",
+				"ControlStatements",
+				"ControlStatementsExceptForEachMacros",
+				"NonEmptyParentheses",
+				"Always"
+			],
+			"enumDescriptions": [
+				"Never put a space before opening parentheses.",
+				"Put a space before opening parentheses only after control statement keywords (for/if/while...).",
+				"Same as ControlStatements except this option doesn't apply to ForEach macros. This is useful in projects where ForEach macros are treated as function calls instead of control statements.",
+				"Put a space before opening parentheses only if the parentheses are not empty i.e. '()'",
+				"Always put a space before opening parentheses, except when it's prohibited by the syntax rules (in function-like macro definitions) or when determined by other style rules (after unary operators, opening parentheses, etc.)"
+			]
+		},
+		"SpaceBeforeRangeBasedForLoopColon": {
+			"description": "Define behavior for spaces regarding range-based 'for' loop colon.",
+			"type": "boolean",
+			"enum": [
+				true,
+				false
+			],
+			"enumDescriptions": [
+				"insert space before range-based 'for' loop colon",
+				"remove spaces before range-based 'for' loop colon"
+			]
+		},
+		"SpaceBeforeSquareBrackets": {
+			"type": "boolean",
+			"description": "If true, spaces will be before [. Lambdas will not be affected. Only the first [ will get a space added."
+		},
+		"SpaceInEmptyBlock": {
+			"type": "boolean",
+			"description": "If true, spaces will be inserted into {}."
+		},
+		"SpaceInEmptyParentheses": {
+			"description": "Identify how empty parentheses are handled",
+			"type": "boolean",
+			"enum": [
+				true,
+				false
+			],
+			"enumDescriptions": [
+				"spaces may be inserted into empty parentheses",
+				"spaces will be removed from empty parentheses"
+			]
+		},
+		"SpacesBeforeTrailingComments": {
+			"$ref": "#/definitions/unsigned",
+			"description": "The number of spaces before trailing line comments (// - comments)."
+		},
+		"SpacesInAngles": {
+			"type": "boolean",
+			"description": "If true, spaces will be inserted after < and before > in template argument lists."
+		},
+		"SpacesInCStyleCastParentheses": {
+			"type": "boolean",
+			"description": "If true, spaces may be inserted into C style casts."
+		},
+		"SpacesInConditionalStatement": {
+			"description": "Indentify how spaces are used around if/for/switch/while conditions.",
+			"type": "boolean",
+			"enum": [
+				true,
+				false
+			],
+			"enumDescriptions": [
+				"Surrounding spaces will be inserted",
+				"Surrounding spaces will be removed"
+			]
+		},
+		"SpacesInContainerLiterals": {
+			"type": "boolean",
+			"description": "If true, spaces are inserted inside container literals (e.g. ObjC and Javascript array and dict literals)."
+		},
+		"SpacesInParentheses": {
+			"description": "Define insertion/removal of spaces in parentheses.",
+			"type": "boolean",
+			"enum": [
+				true,
+				false
+			],
+			"enumDescriptions": [
+				"Spaces will be inserted within parentheses neighboring the parentheses.",
+				"Spaces will be removed from parentheses blocks '(x)'"
+			]
+		},
+		"SpacesInSquareBrackets": {
+			"type": "boolean",
+			"description": "If true, spaces will be inserted after [ and before ]. Lambdas without arguments or unspecified size array declarations will not be affected."
+		},
+		"Standard": {
+			"type": "string",
+			"description": "parse and format C++ constructs compatible with this standard",
+			"enum": [
+				"c++03",
+				"c++11",
+				"c++14",
+				"c++17",
+				"c++20",
+				"Latest",
+				"Auto"
+			]
+		},
+		"StatementMacros": {
+			"$refs": "#/definitions/vectorString",
+			"description": "array of macros that should be interpreted as complete statements"
+		},
+		"TabWidth": {
+			"$ref": "#/definitions/unsigned",
+			"description": "number of columns for a single tab"
+		},
+		"TypenameMacros": {
+			"$ref": "#/definitions/vectorString",
+			"description": "A vector of macros that should be interpreted as type declarations instead of as function calls."
+		},
+		"UseCRLF": {
+			"type": "boolean",
+			"description": "Use \\r\\n instead of \\n for line breaks. Also used as fallback if DeriveLineEnding is true."
+		},
+		"UseTab": {
+			"description": "the way to use tab characters in source file",
+			"oneOf": [
+				{
+					"type": "boolean",
+					"enum": [
+						true,
+						false
+					],
+					"enumDescriptions": [
+						"Use tabs whenever we need to fill whitespace that spans at least from one tab stop to the next one.",
+						"Never use tabs"
+					]
+				},
+				{
+					"type": "string",
+					"enum": [
+						"Never",
+						"ForIndentation",
+						"ForContinuationAndIndentation",
+						"AlignWithSpaces",
+						"Always"
+					],
+					"enumDescriptions": [
+						"Never use tabs",
+						"Use tabs only for indentation.",
+						"Fill all leading whitespace with tabs, and use spaces for alignment that appears within a line (e.g. consecutive assignments and declarations).",
+						"Use tabs for line continuation and indentation, and spaces for alignment.",
+						"Use tabs whenever we need to fill whitespace that spans at least from one tab stop to the next one."
+					]
+				}
+			]
+		}
+	},
+	"additionalProperties": false,
+	"definitions": {
+		"bool": {
+			"type": "boolean"
+		},
+		"unsigned": {
+			"type": "integer",
+			"minimum": 0
+		},
+		"vectorString": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"languageKind": {
+			"type": "string",
+			"enum": [
+				"None",
+				"Cpp",
+				"CSharp",
+				"Java",
+				"JavaScript",
+				"ObjC",
+				"Proto",
+				"TableGen",
+				"TextProto"
+			]
+		},
+		"BasedOnStyleDef": {
+			"type": "string",
+			"enum": [
+				"LLVM",
+				"Google",
+				"Chromium",
+				"Mozilla",
+				"WebKit",
+				"Microsoft",
+				"GNU"
+			]
+		},
+		"IncludeCategoryDef": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"Regex": {
+					"type": "string",
+					"description": "regular expresion matching the filename of an include."
+				},
+				"Priority": {
+					"$ref": "#/definitions/unsigned"
+				},
+				"SortPriority": {
+					"$ref": "#/definitions/unsigned"
+				}
+			},
+			"required": [
+				"Regex",
+				"Priority"
+			]
+		}
+	}
+}
