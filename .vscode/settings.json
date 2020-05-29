@@ -11,6 +11,7 @@
 	"yaml.schemas": {
 		"./clang-format-schema.json": [
 			".clang-format",
+			"_clang-format",
 			"clang-format"
 		]
 	},
@@ -18,6 +19,7 @@
 		{
 			"fileMatch": [
 				".clang-format",
+				"_clang-format",
 				"clang-format"
 			],
 			"url": "./clang-format-schema.json"

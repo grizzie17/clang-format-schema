@@ -40,6 +40,7 @@ Add the following to your configuration (settngs).  Do NOT add the `yaml.format.
   "yaml.schemas": {
     "./clang-format-schema.json": [
       ".clang-format",
+      "_clang-format",
       "clang-format"
     ]
   },
@@ -55,6 +56,7 @@ Also add the following.
     {
       "fileMatch": [
         ".clang-format",
+        "_clang-format",
         "clang-format"
       ],
       "url": "./clang-format-schema.json"
