@@ -12,7 +12,7 @@
 		"./clang-format-schema.json": [
 			".clang-format",
 			"_clang-format",
-			"clang-format"
+			"*-dump.yaml"
 		]
 	},
 	"json.schemas": [
@@ -20,7 +20,7 @@
 			"fileMatch": [
 				".clang-format",
 				"_clang-format",
-				"clang-format"
+				"*-dump.yaml"
 			],
 			"url": "./clang-format-schema.json"
 		}
