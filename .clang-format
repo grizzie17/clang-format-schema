@@ -6,7 +6,7 @@
 IndentWidth: 4
 TabWidth: 4
 UseCRLF: false
-UseTab: Never #ForContinuationAndIndentation
+UseTab: Never
 ColumnLimit: 80
 
 AccessModifierOffset: -4
@@ -25,6 +25,7 @@ AllowAllConstructorInitializersOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: true
 AllowShortBlocksOnASingleLine: Empty
 AllowShortCaseLabelsOnASingleLine: false
+#AllowShortEnumsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: false
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLambdasOnASingleLine: All
@@ -41,7 +42,7 @@ BinPackParameters: true
 # Braces
 BreakBeforeBraces: Custom
 BraceWrapping:
-  AfterCaseLabel: false
+  AfterCaseLabel: true
   AfterClass: true
   AfterControlStatement: true
   AfterEnum: true
@@ -98,7 +99,7 @@ IncludeCategories:
 IncludeIsMainRegex: "(Test)?$"
 IncludeIsMainSourceRegex: ""
 
-IndentCaseBlocks: false
+IndentCaseBlocks: true
 IndentCaseLabels: false
 IndentGotoLabels: false
 IndentPPDirectives: AfterHash
@@ -137,7 +138,7 @@ SpaceBeforeRangeBasedForLoopColon: true
 SpaceBeforeSquareBrackets: false
 SpaceInEmptyBlock: false
 SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: 4
+SpacesBeforeTrailingComments: 2
 SpacesInAngles: false
 SpacesInConditionalStatement: true
 SpacesInContainerLiterals: true
@@ -148,6 +149,7 @@ SpacesInSquareBrackets: false
 StatementMacros:
   - Q_UNUSED
   - QT_REQUIRE_VERSION
+  - clangStatementMacro
 
 ---
 Language: Cpp
