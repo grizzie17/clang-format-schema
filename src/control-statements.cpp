@@ -12,6 +12,8 @@ main()
     if ( a < 0 )
         return;
 
+    // AllowShortIfStatementsOnASingleLine
+    // BraceWrapping.AfterControlStatement
     // BreakBeforeBraces
     if ( a < 0 ) {}
     else
