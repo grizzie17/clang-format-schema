@@ -1,3 +1,5 @@
+#include <vector>
+
 
 // BraceWrapping.AfterNamespace
 // CompactNamespaces
@@ -13,3 +15,7 @@ typedef int foobar;
 // BraceWrapping.SplitEmptyNamespace
 namespace Bob {
 }
+
+// SortUsingDeclarations
+using namespace Foo;
+using namespace std;

@@ -1,3 +1,4 @@
+#include <vector>
 int a = 0;
 
 
@@ -19,6 +20,10 @@ main()
     else
     {}
 
+    // SpaceAfterLogicalNot
+    if ( ! foo() )
+        a = 1;
+
 
     // AllowShortLoopsOnASingleLine
     // SpaceBeforeParens
@@ -39,10 +44,22 @@ main()
     } while ( a < 0 );
 
 
+    for ( int j = 0; j < 5; ++j )
+        ++a;
+
+
+    std::vector<int> vv = { 1, 2, 3, 4, 5 };
+    // SpaceBeforeRangeBasedForLoopColon
+    // SpacesInConditionalStatement
+    for ( auto item : vv )
+        a += item;
+
+
     // BraceWrapping.AfterControlStatement
     // BraceWrapping.BeforeElse
     // BraceWrapping.IndentBraces
     // IndentWidth
+    // SpacesInConditionalStatement
     if ( a < 0 )
     {
         a = 1;
@@ -72,25 +89,15 @@ main()
     // BreakBeforeBraces
     try
     {
-        foo();
+        foo();  // SpaceInEmptyParentheses
     }
     catch ( int e )
     {}
-
-
-    // BreakBeforeTernaryOperators
-    // ContinuationIndentWidth
-    int aaaaaaaaaaaaaaaaaaaaaaaa = -1;
-    int bbbbbbbbbbbbbbbbbbbbbbbb = 0;
-    int aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            = aaaaaaaaaaaaaaaaaaaaaaaa < bbbbbbbbbbbbbbbbbbbbbbbb
-            ? aaaaaaaaaaaaaaaaaaaaaaaa
-            : bbbbbbbbbbbbbbbbbbbbbbbb;
 }
 
 
 bool
-foo()
+foo()  // SpaceInEmptyParentheses
 {
     return true;
 }

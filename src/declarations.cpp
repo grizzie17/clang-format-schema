@@ -1,9 +1,24 @@
 
 // AlignConsecutiveAssignments
 // AlignConsecutiveDeclarations
-int    intData = 0;
-float  floatData = 0.0f;
-double doubleData = 0.0;
+// AlignTrailingComments
+// SpacesBeforeTrailingComments
+int    intData = 0;       // one
+float  floatData = 0.0f;  // two
+double doubleData = 0.0;  // three
+
+// SpaceBeforeSquareBrackets
+// SpacesInSquareBrackets
+int arr[3];
+
+
+// PointerAlignment
+int* pint;
+
+
+// SpaceBeforeCpp11BracedList
+int*        p = new int[3] { 1, 2, 3 };
+std::vector v = std::vector<int> { 1, 2, 3 };
 
 
 // AllowShortEnumsOnASingleLine
