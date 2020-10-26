@@ -1,3 +1,5 @@
+#include <vector>
+
 
 // AlignConsecutiveAssignments
 // AlignConsecutiveDeclarations
@@ -46,10 +48,13 @@ union sampleUnion
 
 
 // BraceWrapping.AfterExternBlock
-extern "C"
-{
-    extern int bob;
+#ifdef __cplusplus
+extern "C" {
+#endif
+extern int bob;
+#ifdef __cplusplus
 }
+#endif
 
 // AlwaysBreakTemplateDeclarations
 // SpaceAfterTemplateKeyword

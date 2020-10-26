@@ -229,6 +229,21 @@
             "type": "boolean",
             "description": "If false, a function declaration’s or function definition’s parameters will either all be on the same line or will have one line each"
         },
+        "BitFieldColonSpacing": {
+            "description": "The Bit-field colon spacing",
+            "enum": [
+                "Both",
+                "None",
+                "Before",
+                "After"
+            ],
+            "enumDescription": [
+                "Add one space on each side of the ':'",
+                "Add no space around the ':' (except when needed for AlignConsecutiveBitFields).",
+                "Add space before the ':' only",
+                "Add space after the ':' only (space may be added before if needed for AlignConsecutiveBitFields)"
+            ]
+        },
         "BraceWrapping": {
             "type": "object",
             "description": "Control of individual brace wrapping cases",
@@ -859,6 +874,10 @@
                     ]
                 }
             ]
+        },
+        "WhitespaceSensitiveMacros": {
+            "description": "A vector of macros which are whitespace-sensitive and should not be touched",
+            "$ref": "#/definitions/vectorString"
         }
     },
     "additionalProperties": false,

@@ -1,4 +1,3 @@
-#include <vector>
 
 
 // AlwaysBreakBeforeMultilineStrings
@@ -40,6 +39,7 @@ someLooooooooooooooooongFunction();
 //setup end
 
 // AlignOperands
+// BreakBeforeBinaryOperators
 int aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         = bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         + ccccccccccccccccccccccccccccccccccccccccc;
