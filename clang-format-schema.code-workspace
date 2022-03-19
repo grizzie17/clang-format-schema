@@ -1,0 +1,45 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "extensions": {
+        "recommendations": [
+            "redhat.vscode-yaml",
+            "ZainChen.json"
+        ]
+    },
+    "settings": {
+        "yaml.format.enable": true,
+        "yaml.validate": true,
+        "yaml.hover": true,
+        "yaml.completion": true,
+        "yaml.schemas": {
+            "./clang-format-schema.json": [
+                ".clang-format",
+                "_clang-format",
+                "*-dump.yaml"
+            ]
+        },
+        "json.schemas": [
+            {
+                "fileMatch": [
+                    ".clang-format",
+                    "_clang-format",
+                    "*-dump.yaml"
+                ],
+                "url": "./clang-format-schema.json"
+            }
+        ],
+        "[yaml]": {
+            "editor.insertSpaces": true,
+            "editor.tabSize": 2,
+            "editor.quickSuggestions": {
+                "other": true,
+                "comments": false,
+                "strings": false
+            }
+        }
+    }
+}

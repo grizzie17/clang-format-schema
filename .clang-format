@@ -12,6 +12,7 @@ ColumnLimit: 80
 AccessModifierOffset: -4
 
 AlignAfterOpenBracket: DontAlign
+
 AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: true
 AlignConsecutiveMacros: true
@@ -117,7 +118,7 @@ MacroBlockEnd: ""
 MaxEmptyLinesToKeep: 2
 
 NamespaceIndentation: None
-NamespaceMacros: [ Context ]
+NamespaceMacros: [Context]
 
 # Pointers
 DerivePointerAlignment: false
@@ -156,5 +157,4 @@ StatementMacros:
 ---
 Language: Cpp
 Standard: c++17
-...
 # spell-checker: enable

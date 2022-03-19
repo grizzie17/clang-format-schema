@@ -4,6 +4,7 @@
         "$schema": {
             "type": "string"
         },
+        "---": {},
         "BasedOnStyle": {
             "$ref": "#/definitions/BasedOnStyleDef",
             "description": "style used for all options not specifically set in the configuration"
@@ -18,29 +19,85 @@
             "enum": [
                 "Align",
                 "DontAlign",
-                "AlwaysBreak"
+                "AlwaysBreak",
+                "BlockIndent"
             ],
             "enumDescriptions": [
                 "Align parameters on the open bracket",
                 "Don't align, instead use ContinuationIndentWidth",
-                "Always break after an open bracket, if parameters dont fit on a single line"
+                "Always break after an open bracket, if parameters dont fit on a single line",
+                "Always break after an open bracket, if the parameters dont fit on a single line. Closing brackets will be place on a new line"
+            ]
+        },
+        "AlignArrayOfStructures": {
+            "description": "if not 'None', when using initialization for an arry of structs aligns the fields into columns",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/AlignConsecutiveDef"
+                },
+                {
+                    "$ref": "#/definitions/AlignConsecutiveStyle"
+                },
+                {
+                    "type": "boolean"
+                }
             ]
         },
         "AlignConsecutiveAssignments": {
-            "type": "boolean",
-            "description": "if 'true', aligns consecutive assignments"
+            "description": "if 'true', aligns consecutive assignments",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/AlignConsecutiveDef"
+                },
+                {
+                    "$ref": "#/definitions/AlignConsecutiveStyle"
+                },
+                {
+                    "type": "boolean"
+                }
+            ]
         },
         "AlignConsecutiveBitFields": {
-            "type": "boolean",
-            "description": "if 'true', aligns consecutive bitfield members"
+            "description": "if 'true', aligns consecutive bitfield members",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/AlignConsecutiveDef"
+                },
+                {
+                    "$ref": "#/definitions/AlignConsecutiveStyle"
+                },
+                {
+                    "type": "boolean"
+                }
+            ]
         },
         "AlignConsecutiveDeclarations": {
-            "type": "boolean",
-            "description": "if 'true', aligns consecutive declarations"
+            "description": "if 'true', aligns consecutive declarations",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/AlignConsecutiveDef"
+                },
+                {
+                    "$ref": "#/definitions/AlignConsecutiveStyle"
+                },
+                {
+                    "type": "boolean"
+                }
+            ]
         },
         "AlignConsecutiveMacros": {
-            "type": "boolean",
-            "description": "if 'true', aligns the body of consectuive C/C++ preprocessor macros"
+            "description": "if 'true', aligns the body of consectuive C/C++ preprocessor macros",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/AlignConsecutiveDef"
+                },
+                {
+                    "$ref": "#/definitions/AlignConsecutiveStyle"
+                },
+                {
+                    "type": "boolean"
+                }
+            ]
         },
         "AlignEscapedNewlines": {
             "description": "options for aligning backslashes in escaped newlines",
@@ -119,9 +176,6 @@
             "description": "dependent on the value, 'if() { return 0; }' can be put on a single line",
             "oneOf": [
                 {
-                    "type": "boolean"
-                },
-                {
                     "type": "string",
                     "enum": [
                         "None",
@@ -151,12 +205,16 @@
                     "enum": [
                         "Never",
                         "WithoutElse",
+                        "OnlyFirstIf",
+                        "AllIfsAndElse",
                         "Always"
                     ],
                     "enumDescriptions": [
                         "Never put short ifs on the same line.",
                         "Without else put short ifs on the same line only if the else is not a compound statement.",
-                        "Always put short ifs on the same line if the else is not a compound statement or not."
+                        "Put short ifs, but not else ifs nor else statements on the same line",
+                        "Always put short ifs on the same line if the else is not a compound statement or not.",
+                        ""
                     ]
                 }
             ]
@@ -220,6 +278,10 @@
                 "Force break after template declaration only when the following declaration spans multiple lines.",
                 "Always break after template declaration (please quote \"Yes\")"
             ]
+        },
+        "AttributeMacros": {
+            "description": "A vector of strings that should be interpreted as attributes/qualifiers instead of identifiers. This can be useful for language extensions or static analyzer annotations.",
+            "$ref": "#/definitions/vectorString"
         },
         "BinPackArguments": {
             "type": "boolean",
@@ -381,6 +443,20 @@
                 "Configure each individual brace in BraceWrapping."
             ]
         },
+        "BreakBeforeConceptDeclarations": {
+            "description": "The concept declaration style to use",
+            "type": "string",
+            "enum": [
+                "Never",
+                "Allowed",
+                "Always"
+            ],
+            "enumDescriptions": [
+                "Keep the template declaration line together with 'concept'",
+                "Breaking between template declaration and concept is allowed",
+                "Always break before concept"
+            ]
+        },
         "BreakBeforeInheritanceComma": {
             "type": "boolean",
             "description": "DEPRECATED: use BreakInheritanceList"
@@ -465,6 +541,34 @@
             "type": "boolean",
             "description": "completely disables formatting"
         },
+        "EmptyLineAfterAccessModifier": {
+            "description": "defines when to put an empty line after access modifiers",
+            "type": "string",
+            "enum": [
+                "Never",
+                "Leave",
+                "Alwyas"
+            ],
+            "enumDescriptions": [
+                "Remove all empty lines after access modifiers",
+                "Keep existing empty lines after access modifiers",
+                "Always add empty line after access modifiers if there are none"
+            ]
+        },
+        "EmptyLineBeforeAccessModifier": {
+            "description": "define in which cases to put an empty line before access modifiers",
+            "type": "string",
+            "enum": [
+                "Never",
+                "Leave",
+                "LogicalBlock"
+            ],
+            "enumDescriptions": [
+                "Remove all empty lines before access modifiers",
+                "Keep existing empty lines before access modifiers",
+                "Add empty line only when access modifiers starts a new logical block"
+            ]
+        },
         "ExperimentalAutoDetectBinPacking": {
             "type": "boolean",
             "description": "If true, clang-format detects whether function calls and definitions are formatted with one parameter per line."
@@ -476,6 +580,10 @@
         "ForEachMacros": {
             "$ref": "#/definitions/vectorString",
             "description": "A vector of macros that should be interpreted as foreach loops instead of as function calls."
+        },
+        "IfMacros": {
+            "$ref": "#/definitions/vectorString",
+            "description": "A vector of macros that should be interpreted as conditionals instead of as a function call"
         },
         "IncludeBlocks": {
             "description": "Dependent on the value, multiple #include blocks can be sorted as one and divided based on category.",
@@ -505,6 +613,10 @@
         "IncludeIsMainSourceRegex": {
             "type": "string",
             "description": "Specify a regular expression for files being formatted that are allowed to be considered “main” in the file-to-main-include mapping."
+        },
+        "IndentAccessModifiers": {
+            "description": "specify whether access modifiers should have their own identation level",
+            "type": "boolean"
         },
         "IndentCaseBlocks": {
             "type": "boolean",
@@ -546,6 +658,10 @@
                 "Indents directives before the hash"
             ]
         },
+        "IndentRequiresClause": {
+            "description": "indent the requires clause in a template. This only applies when RequiresClausePosition is OwnLine or WithFollowing",
+            "type": "boolean"
+        },
         "IndentWidth": {
             "$ref": "#/definitions/unsigned",
             "description": "number colmns to indent"
@@ -553,6 +669,10 @@
         "IndentWrappedFunctionNames": {
             "type": "boolean",
             "description": "Indent if a function definition or declaration is wrapped after the type."
+        },
+        "InsertBraces": {
+            "description": "insert braces after control statements (if, else, for, do, while) in C++",
+            "type": "boolean"
         },
         "InsertTrailingCommas": {
             "type": "string",
@@ -585,6 +705,18 @@
         "KeepEmptyLinesAtTheStartOfBlocks": {
             "type": "boolean",
             "description": "If true, the empty line at the start of blocks is kept."
+        },
+        "LambdaBodyIndentation": {
+            "description": "indentation style of lambda bodies",
+            "type": "string",
+            "enum": [
+                "Signature",
+                "OuterScope"
+            ],
+            "enumDescriptions": [
+                "Align lambda body relative to the lambda signature (default)",
+                "Align lambda body relative to the indentation level of the outer scope"
+            ]
         },
         "Language": {
             "$ref": "#/definitions/languageKind",
@@ -644,6 +776,26 @@
             "type": "boolean",
             "description": "Add a space in front of an Objective-C protocol list, i.e. use Foo <Protocol> instead of Foo<Protocol>."
         },
+        "PackConstructorInitializers": {
+            "description": "pack constructor initializers style to use",
+            "type": "string",
+            "enum": [
+                "Never",
+                "BinPack",
+                "CurrentLine",
+                "NextLine"
+            ],
+            "enumDescriptions": [
+                "Always put each constructor inializer on its own line",
+                "Bin-pack constructor initializers",
+                "put all constructor initializers on the current if they fit. Otherwise, put each one on its own line",
+                "Same as CurrentLine except that if all constructors do not fit on the current line, try to fit them on the next line"
+            ]
+        },
+        "PPIndentWidth": {
+            "description": "number of columns t use for indentation of preprocessor statements (-1 will use the IndentWidth property)",
+            "type": "integer"
+        },
         "PenaltyBreakAssignment": {
             "$ref": "#/definitions/unsigned",
             "description": "The penalty for breaking around an assignment operator."
@@ -690,6 +842,22 @@
                 "Align pointer in the middle. (int * p)"
             ]
         },
+        "QualifierOrder": {
+            "description": "the order in which the qualifers appear",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "const",
+                    "inline",
+                    "static",
+                    "constexpr",
+                    "volatile",
+                    "restrict",
+                    "type"
+                ]
+            }
+        },
         "RawStringFormats": {
             "description": "Defines hints for detecting supported languages code blocks in raw strings",
             "type": "array",
@@ -719,6 +887,26 @@
                 ]
             }
         },
+        "ReferenceAlignment": {
+            "description": "reference alignment style (overrides PointerAlignment for references)",
+            "type": "string",
+            "enum": [
+                "Pointer",
+                "Left",
+                "Right",
+                "Middle"
+            ],
+            "enumDescriptions": [
+                "Align reference like PointerAlignment",
+                "Align referece to the left",
+                "Align reference to the right",
+                "Align reference in the middle"
+            ]
+        },
+        "RemoveBracesLLVM": {
+            "type": "boolean",
+            "description": "Remove optional braces of control states in C++ according to the LLVM conding style"
+        },
         "ReflowComments": {
             "type": "boolean",
             "description": "If true, clang-format will attempt to re-flow comments."
@@ -742,6 +930,16 @@
         "SpaceAfterTemplateKeyword": {
             "type": "boolean",
             "description": "If true, a space will be inserted after the ‘template’ keyword."
+        },
+        "SpaceAroundPointerQualifiers": {
+            "description": "defines in which cases to put a space before or after pointer qualifiers",
+            "type": "string",
+            "enum": [
+                "Default",
+                "Before",
+                "After",
+                "Both"
+            ]
         },
         "SpaceBeforeAssignmentOperators": {
             "type": "boolean",
@@ -767,15 +965,59 @@
                 "ControlStatements",
                 "ControlStatementsExceptForEachMacros",
                 "NonEmptyParentheses",
-                "Always"
+                "Always",
+                "Custom"
             ],
             "enumDescriptions": [
                 "Never put a space before opening parentheses.",
                 "Put a space before opening parentheses only after control statement keywords (for/if/while...).",
                 "Same as ControlStatements except this option doesn't apply to ForEach macros. This is useful in projects where ForEach macros are treated as function calls instead of control statements.",
                 "Put a space before opening parentheses only if the parentheses are not empty i.e. '()'",
-                "Always put a space before opening parentheses, except when it's prohibited by the syntax rules (in function-like macro definitions) or when determined by other style rules (after unary operators, opening parentheses, etc.)"
+                "Always put a space before opening parentheses, except when it's prohibited by the syntax rules (in function-like macro definitions) or when determined by other style rules (after unary operators, opening parentheses, etc.)",
+                "configure each individual space before parentheses in SpaceBeforeParensOptions"
             ]
+        },
+        "SpaceBeforeParensOptions": {
+            "description": "control of individual space before parentheses",
+            "type": "object",
+            "properties": {
+                "AfterControlStatements": {
+                    "description": "put space between control statement keywords (for/if/while...) and opening parenthese",
+                    "type": "boolean"
+                },
+                "AfterForEachMacros": {
+                    "description": "put space between foreach macros and the opening parenthesis",
+                    "type": "boolean"
+                },
+                "AfterFunctionDeclarationName": {
+                    "description": "put a space between function declaration name and opening parenthese",
+                    "type": "boolean"
+                },
+                "AfterFunctionDefinitionName": {
+                    "description": "put a space between function definition name and opening parenthese",
+                    "type": "boolean"
+                },
+                "AfterIfMacros": {
+                    "description": "put a space between if macros and opening parentheses",
+                    "type": "boolean"
+                },
+                "AfterOverloadedOperator": {
+                    "description": "put space between operator overloading and opening parenthese",
+                    "type": "boolean"
+                },
+                "AfterRequiresInClause": {
+                    "description": "put space between requires keyword and opening parentheses",
+                    "type": "boolean"
+                },
+                "AfterRequiresInExpression": {
+                    "description": "put space requires keyword in a requires expression and opening parentheses",
+                    "type": "boolean"
+                },
+                "BeforeNonEmptyParentheses": {
+                    "description": "put a space before opening parentheses only if the parentheses are not empty",
+                    "type": "boolean"
+                }
+            }
         },
         "SpaceBeforeRangeBasedForLoopColon": {
             "description": "If true, insert space before range-based 'for' loop colon.",
@@ -833,6 +1075,10 @@
                 "Latest",
                 "Auto"
             ]
+        },
+        "StatementAttributeLikeMacros": {
+            "description": "macros which are ignored in front of a state, as if they were an attribute",
+            "$refs": "#/definitions/vectorString"
         },
         "StatementMacros": {
             "$refs": "#/definitions/vectorString",
@@ -939,6 +1185,49 @@
             "required": [
                 "Regex",
                 "Priority"
+            ]
+        },
+        "AlignConsecutiveStyle": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Enabled": {
+                    "type": "boolean",
+                    "description": "Whether aligning is enabled"
+                },
+                "AcrossEmptyLines": {
+                    "type": "boolean",
+                    "description": "Whether to align across empty lines"
+                },
+                "AcrossComments": {
+                    "type": "boolean",
+                    "description": "Whether to align across comments"
+                },
+                "AlignCompound": {
+                    "type": "boolean",
+                    "description": "(only for AlignConsecutiveAssignments) Whether compound assignments like += are aligned along with ="
+                },
+                "PadOperators": {
+                    "type": "boolean",
+                    "description": "(only for AlignConsecutiveAssignments) Whether short assignment operators are left-padded to the same length as long ones in order to pull all assignment operators to the right or left hand side"
+                }
+            }
+        },
+        "AlignConsecutiveDef": {
+            "type": "string",
+            "enum": [
+                "None",
+                "AcrossEmptyLines",
+                "AcrossComments",
+                "AlignCompound",
+                "PadOperators"
+            ],
+            "enumDescriptions": [
+                "Do not align",
+                "Whether to align across empty lines",
+                "Whether to align across comments",
+                "(only for AlignConsecutiveAssignments) Whether compound assignments like += are aligned along with =",
+                "(only for AlignConsecutiveAssignments) Whether short assignment operators are left-padded to the same length as long ones in order to pull all assignment operators to the right or left hand side"
             ]
         }
     }
